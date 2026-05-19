@@ -15,7 +15,7 @@
   const WA_URL = 'https://wa.me/966550650034';
 
   // ---------- Sub-page definitions ----------
-    const SERVICES = {
+      const SERVICES = {
     'real-estate-liquidity': {
       id: 'real-estate-liquidity',
       eyebrow: '01 — السيولة العقارية',
@@ -129,46 +129,58 @@
   const arrowSvg = '<svg class="arrow" viewBox="0 0 16 10" fill="none"><path d="M15 5H1M1 5l4-4M1 5l4 4" stroke="currentColor" stroke-width="1.4"/></svg>';
 
   function renderSubPage(s) {
+    const lang = i18next.language || 'ar';
+    const isEn = lang === 'en';
+    const getT = (ar, en) => isEn ? en : ar;
+    
+    // Group docs array by 2 (ar, en)
+    const docs = [];
+    for(let i=0; i<s.docs.length; i+=2) {
+      docs.push({ar: s.docs[i], en: s.docs[i+1]});
+    }
+
     return `
-      <section class="sub-hero">
+      <section class="sub-hero is-dark">
         <div class="hero-photo">
+          <picture class="hero-img-ltr">
+            <source media="(max-width: 768px)" srcset="assets/${s.id}_mobil.png">
+            <img src="assets/${s.id}_desc.png" alt="${escapeHTML(s.id)}" style="width:100%; height:100%; object-fit:cover;">
+          </picture>
+          <picture class="hero-img-rtl">
+            <source media="(max-width: 768px)" srcset="assets/${s.id}_mobil.png">
+            <img src="assets/${s.id}_desc_mirrored.png" alt="${escapeHTML(s.id)}" style="width:100%; height:100%; object-fit:cover;">
+          </picture>
         </div>
-        <div class="container">
-          <div class="sub-hero-grid">
+        <div class="container" style="position: relative; z-index: 2;">
+          <div class="sub-hero-grid" style="grid-template-columns: 1fr; max-width: 600px;">
             <div>
               <div class="crumbs">
-                <a href="#/">الرئيسية</a>
+                <a href="#/" data-i18n="home.nav_home">${i18next.t('home.nav_home')}</a>
                 <span aria-hidden="true">/</span>
-                <span class="en">${escapeHTML(s.id.toUpperCase())}</span>
+                <span>${escapeHTML(s.id.toUpperCase())}</span>
               </div>
               <div class="hero-eyebrow eyebrow on-dark" data-reveal>
-                <span class="num">${escapeHTML(s.eyebrow)}</span>
+                <span class="num">${escapeHTML(getT(s.eyebrow, s.eyebrow_en))}</span>
               </div>
-              <h1 data-reveal style="--delay: 80ms">${s.title}</h1>
-              <p class="lede on-dark" data-reveal style="--delay: 160ms">${escapeHTML(s.lede)}</p>
+              <h1 data-reveal style="--delay: 80ms">${getT(s.title, s.title_en)}</h1>
+              <p class="lede on-dark" data-reveal style="--delay: 160ms">${escapeHTML(getT(s.lede, s.lede_en))}</p>
               <div class="hero-ctas" data-reveal style="--delay: 240ms">
                 <a href="#lead" class="btn btn-primary" data-scroll-to="lead">
-                  اطلب الخدمة الآن
+                  <span data-i18n="form.submit">${i18next.t('form.submit')}</span>
                   ${arrowSvg}
                 </a>
                 <a href="${WA_URL}" class="btn btn-ghost" target="_blank" rel="noopener">
-                  واتساب مباشر
+                  <span data-i18n="home.contact_consultant">${i18next.t('home.contact_consultant')}</span>
                 </a>
               </div>
               <div class="sub-hero-meta">
                 ${s.meta.map((m,i) => `
                   <div class="item" data-reveal style="--delay: ${300 + i*80}ms">
-                    <div class="k">${escapeHTML(m.k)}</div>
-                    <div class="v">${escapeHTML(m.v)}</div>
+                    <div class="k">${escapeHTML(getT(m.k, m.k_en))}</div>
+                    <div class="v">${escapeHTML(getT(m.v, m.v_en))}</div>
                   </div>
                 `).join('')}
               </div>
-            </div>
-            <div class="sub-hero-photo" data-reveal style="--delay: 120ms">
-              <picture>
-                <source media="(max-width: 768px)" srcset="assets/${s.id}_mobil.png">
-                <img src="assets/${s.id}_desc.png" alt="${escapeHTML(s.id)}" style="width:100%; height:100%; object-fit:cover;">
-              </picture>
             </div>
           </div>
         </div>
@@ -178,20 +190,17 @@
         <div class="container">
           <div class="section-head">
             <div data-reveal>
-              <div class="label"><span class="num-tag num">BENEFITS / لماذا نحن</span></div>
-              <h2 class="h-section" style="margin-top:16px">ما الذي تحصل عليه.</h2>
+              <div class="label"><span class="num-tag num">BENEFITS / المزايا</span></div>
+              <h2 class="h-section" style="margin-top:16px"><span data-i18n="home.feat3_title">${i18next.t('home.feat3_title')}</span></h2>
             </div>
-            <p class="lede" data-reveal style="--delay: 120ms">
-              نقدّم خدمة تمويل بمعايير مهنية عالية تضمن لك سرعة الإنجاز والخصوصية التامة، مع متابعة شخصية حتى استلام التمويل.
-            </p>
           </div>
           <div class="benefits-grid">
             ${s.benefits.map((b,i) => `
               <div class="benefit" data-reveal style="--delay: ${i*80}ms">
                 <div class="num">0${i+1}</div>
                 <div>
-                  <h3>${escapeHTML(b.h)}</h3>
-                  <p>${escapeHTML(b.p)}</p>
+                  <h3>${escapeHTML(getT(b.h, b.h_en))}</h3>
+                  <p>${escapeHTML(getT(b.p, b.p_en))}</p>
                 </div>
               </div>
             `).join('')}
@@ -204,17 +213,14 @@
           <div class="section-head" style="margin-bottom: 40px">
             <div data-reveal>
               <div class="label"><span class="num-tag num">DOCS / المستندات</span></div>
-              <h2 class="h-section" style="margin-top:16px">المستندات المطلوبة.</h2>
+              <h2 class="h-section" style="margin-top:16px"><span data-i18n="home.feat2_title">${i18next.t('home.feat2_title')}</span></h2>
             </div>
-            <p class="lede" data-reveal style="--delay: 120ms">
-              قائمة المستندات الأساسية لبدء دراسة طلبك — قد نطلب مستندات إضافية حسب نوع التمويل ووضعك المالي.
-            </p>
           </div>
           <ul class="docs-list">
-            ${s.docs.map((d,i) => `
+            ${docs.map((d,i) => `
               <li data-reveal style="--delay: ${i*60}ms">
                 <svg class="check" viewBox="0 0 18 18" fill="none"><path d="M3 9.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"/></svg>
-                <span>${escapeHTML(d)}</span>
+                <span>${escapeHTML(getT(d.ar, d.en))}</span>
               </li>
             `).join('')}
           </ul>
@@ -224,10 +230,10 @@
       <section class="cta-block">
         <div class="container">
           <div class="cta-inner">
-            <h2 data-reveal>جاهز تبدأ؟<br/><span style="color: var(--accent);">احصل على عرضك الآن.</span></h2>
+            <h2 data-reveal>${i18next.t('home.cta_title')}</h2>
             <div class="actions" data-reveal style="--delay: 120ms">
               <a href="#lead" class="btn btn-primary" data-scroll-to="lead">
-                تقديم الطلب ${arrowSvg}
+                <span data-i18n="form.submit">${i18next.t('form.submit')}</span> ${arrowSvg}
               </a>
               <a href="tel:${PHONE_INTL}" class="btn btn-ghost on-light">
                 <span class="en num" dir="ltr">+966 55 065 0034</span>
@@ -241,52 +247,52 @@
         <div class="container">
           <div class="form-card" data-reveal>
             <span class="badge">FORM · ${escapeHTML(s.id.toUpperCase())}</span>
-            <h2>${escapeHTML(stripTags(s.title))}</h2>
-            <p class="lede">اترك بياناتك وسيتواصل معك مستشار مختص بهذه الخدمة خلال ساعات العمل الرسمية.</p>
-            <form data-lead-form data-service="${escapeHTML(s.id)}">
-              <div class="form-grid">
-                <div class="field">
-                  <label>الاسم الكامل <span class="opt">REQUIRED</span></label>
-                  <input type="text" name="name" required placeholder="مثال: عبدالله محمد" />
-                  <div class="err"></div>
-                </div>
-                <div class="field">
-                  <label>رقم الجوال <span class="opt">REQUIRED</span></label>
-                  <input type="tel" name="phone" required pattern="^(05|5|\\+9665)[0-9]{8}$" placeholder="05XXXXXXXX" />
-                  <div class="err"></div>
-                </div>
-                <div class="field">
-                  <label>المدينة <span class="opt">OPTIONAL</span></label>
-                  <input type="text" name="city" placeholder="الرياض" />
-                  <div class="err"></div>
-                </div>
-                <div class="field">
-                  <label>المبلغ التقريبي <span class="opt">OPTIONAL</span></label>
-                  <select name="amount">
-                    <option value="">اختر النطاق...</option>
-                    <option>أقل من 100 ألف ريال</option>
-                    <option>100 — 300 ألف ريال</option>
-                    <option>300 — 700 ألف ريال</option>
-                    <option>700 ألف — 1.5 مليون ريال</option>
-                    <option>أكثر من 1.5 مليون ريال</option>
-                  </select>
-                  <div class="err"></div>
+            <div class="form-grid">
+              <div class="form-info">
+                <h2><span data-i18n="home.contact_title">${i18next.t('home.contact_title')}</span></h2>
+                <p data-i18n="home.contact_desc">${i18next.t('home.contact_desc')}</p>
+                <div class="c-info">
+                  <div class="k" data-i18n="form.phone">${i18next.t('form.phone')}</div>
+                  <div class="v num" dir="ltr"><a href="tel:${PHONE_INTL}">+966 55 065 0034</a></div>
                 </div>
               </div>
-              <div class="form-actions">
-                <p class="note">
-                  بإرسالك الطلب، أنت توافق على
-                  <a href="#" style="color: var(--text); text-decoration: underline;">سياسة الخصوصية</a>
-                  ومعالجة بياناتك للتواصل معك.
-                </p>
-                <button type="submit" class="btn btn-primary">
-                  إرسال الطلب ${arrowSvg}
-                </button>
+              <div class="form-box">
+                <form data-lead-form data-service="${escapeHTML(s.id)}">
+                  <div class="field">
+                    <label><span data-i18n="form.fullname">${i18next.t('form.fullname')}</span></label>
+                    <input type="text" name="name" required placeholder="" data-i18n="[placeholder]form.fullname">
+                    <div class="err"></div>
+                  </div>
+                  <div class="field">
+                    <label><span data-i18n="form.phone">${i18next.t('form.phone')}</span></label>
+                    <input type="tel" name="phone" dir="ltr" required placeholder="05x xxx xxxx">
+                    <div class="err"></div>
+                  </div>
+                  <input type="hidden" name="service" value="${s.id}">
+                  <div class="field">
+                    <label><span data-i18n="form.amount">${i18next.t('form.amount')}</span></label>
+                    <select name="amount">
+                      <option value="" data-i18n="form.choose_range">${i18next.t('form.choose_range')}</option>
+                      <option value="1" data-i18n="form.range1">${i18next.t('form.range1')}</option>
+                      <option value="2" data-i18n="form.range2">${i18next.t('form.range2')}</option>
+                      <option value="3" data-i18n="form.range3">${i18next.t('form.range3')}</option>
+                      <option value="4" data-i18n="form.range4">${i18next.t('form.range4')}</option>
+                      <option value="5" data-i18n="form.range5">${i18next.t('form.range5')}</option>
+                    </select>
+                    <div class="err"></div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="width:100%">
+                    <span data-i18n="form.submit">${i18next.t('form.submit')}</span> ${arrowSvg}
+                  </button>
+                  <p class="privacy-note" style="margin-top: 16px; font-size: 13px;">
+                    <span data-i18n="form.agree1">${i18next.t('form.agree1')}</span> <a href="#" data-i18n="form.privacy" style="color: var(--accent);">${i18next.t('form.privacy')}</a> <span data-i18n="form.agree2">${i18next.t('form.agree2')}</span>
+                  </p>
+                </form>
+                <div class="form-success">
+                  <h3 style="margin-bottom: 8px;" data-i18n="form.success_title">${i18next.t('form.success_title')}</h3>
+                  <p style="margin: 0; color: var(--text-2);"><span data-i18n="form.success_desc">${i18next.t('form.success_desc')}</span> <a class="en num" dir="ltr" href="tel:${PHONE_INTL}" style="color: var(--accent);">+966 55 065 0034</a></p>
+                </div>
               </div>
-            </form>
-            <div class="form-success">
-              <h3 style="margin-bottom: 8px;">شكراً لك. تم استلام طلبك.</h3>
-              <p style="margin: 0; color: var(--text-2);">سيتواصل معك مستشارنا خلال ساعات العمل. للاستفسار العاجل: <a class="en num" dir="ltr" href="tel:${PHONE_INTL}" style="color: var(--accent);">+966 55 065 0034</a></p>
             </div>
           </div>
         </div>
@@ -530,6 +536,8 @@
         el.innerHTML = i18next.t(key);
       }
     });
+    // Re-bind reveals after i18n content is updated
+    setupReveals();
   }
 
   // ---------- Lang toggle (visual placeholder) ----------
