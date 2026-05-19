@@ -65,6 +65,9 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
     overflow-x: hidden;
   }
 
+  html[dir="ltr"] .hero-img-rtl { display: none; }
+  html[dir="rtl"] .hero-img-ltr { display: none; }
+
   /* ---------- Type ---------- */
   h1,h2,h3,h4{ margin:0; font-weight: 600; line-height: 1.15; letter-spacing: -.01em; }
   .display-1{ font-size: clamp(36px, 6.4vw, 84px); font-weight: 600; line-height: 1.05; letter-spacing: -.02em; }
@@ -812,9 +815,11 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-photo">
-      <div class="ph">
-        <span class="ph-label">[ HERO PHOTO · رجل أعمال سعودي · مكتب فاخر · إضاءة طبيعية ]</span>
-      </div>
+      <picture>
+        <source media="(max-width: 768px)" srcset="assets/hero_mobil.png">
+        <img class="hero-img-ltr" src="assets/hero_desc.png" alt="Hero" style="width:100%; height:100%; object-fit:cover;">
+        <img class="hero-img-rtl" src="assets/hero_desc_mirrored.png" alt="Hero" style="width:100%; height:100%; object-fit:cover;">
+      </picture>
     </div>
     <div class="container">
       <div class="hero-content">

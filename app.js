@@ -124,7 +124,6 @@
     return `
       <section class="sub-hero">
         <div class="hero-photo">
-          <div class="ph"><span class="ph-label">${escapeHTML(s.photoLabel)}</span></div>
         </div>
         <div class="container">
           <div class="sub-hero-grid">
@@ -158,7 +157,10 @@
               </div>
             </div>
             <div class="sub-hero-photo" data-reveal style="--delay: 120ms">
-              <span class="ph-label">[ SERVICE PHOTO · ${escapeHTML(s.id)} ]</span>
+              <picture>
+                <source media="(max-width: 768px)" srcset="assets/${s.id}_mobil.png">
+                <img src="assets/${s.id}_desc.png" alt="${escapeHTML(s.id)}" style="width:100%; height:100%; object-fit:cover;">
+              </picture>
             </div>
           </div>
         </div>
