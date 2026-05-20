@@ -54,7 +54,7 @@ export default function Footer() {
             <h4>{t.footer.contact}</h4>
             <ul>
               <li><a href={`tel:${PHONE_INTL}`} className="num en" dir="ltr">+966 55 065 0034</a></li>
-              <li><a href={WA_URL} className="en num" dir="ltr" target="_blank" rel="noopener">WhatsApp · 0550650034</a></li>
+              <li><a href={WA_URL} className="en num" dir="ltr" target="_blank" rel="noopener">0550650034</a></li>
               <li><a href="mailto:info@samanajd.sa" className="en">info@samanajd.sa</a></li>
               <li><a href="#">{t.footer.location}</a></li>
             </ul>
@@ -78,7 +78,10 @@ export default function Footer() {
             <svg className="footer-made-heart" viewBox="0 0 16 16" fill="currentColor" width="13" height="13" aria-hidden="true">
               <path d="M8 13.7C7.6 13.4 1 9.1 1 5a3.9 3.9 0 0 1 7-2.4A3.9 3.9 0 0 1 15 5c0 4.1-6.6 8.4-7 8.7Z"/>
             </svg>
-            <img src="/nest.svg" alt="nest" className="footer-made-logo" />
+            <span className="footer-made-brand">
+              <img src="/nest.svg" alt="" className="footer-made-logo" aria-hidden="true" />
+              <span className="footer-made-wordmark">nest</span>
+            </span>
           </a>
         </div>
       </div>

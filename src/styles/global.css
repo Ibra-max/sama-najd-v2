@@ -688,13 +688,23 @@ html[dir="ltr"] .steps-line::after {
   42%       { transform: scale(1.15); }
   56%       { transform: scale(1); }
 }
-.footer-made-logo {
-  height: 20px; width: auto;
-  border-radius: 5px;
-  opacity: .6;
-  transition: opacity .3s var(--ease), transform .3s var(--ease);
+.footer-made-brand {
+  display: inline-flex; align-items: center; gap: 5px;
 }
-.footer-made-link:hover .footer-made-logo { opacity: 1; transform: scale(1.08); }
+.footer-made-logo {
+  height: 18px; width: auto;
+  border-radius: 4px;
+  transition: transform .3s var(--ease);
+}
+.footer-made-link:hover .footer-made-logo { transform: scale(1.1); }
+.footer-made-wordmark {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 13px; font-weight: 500;
+  letter-spacing: .06em;
+  color: #C4724A;
+  transition: color .3s var(--ease);
+}
+.footer-made-link:hover .footer-made-wordmark { color: #d9845a; }
 .socials { display: flex; gap: 8px; }
 .social-btn {
   width: 36px; height: 36px; display: grid; place-items: center;
