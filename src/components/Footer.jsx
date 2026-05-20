@@ -73,15 +73,13 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="footer-made-link"
             aria-label="Made with love by nest"
+            dir="ltr"
           >
             <span className="footer-made-text">made with</span>
             <svg className="footer-made-heart" viewBox="0 0 16 16" fill="currentColor" width="13" height="13" aria-hidden="true">
               <path d="M8 13.7C7.6 13.4 1 9.1 1 5a3.9 3.9 0 0 1 7-2.4A3.9 3.9 0 0 1 15 5c0 4.1-6.6 8.4-7 8.7Z"/>
             </svg>
-            <span className="footer-made-brand">
-              <img src="/nest.svg" alt="" className="footer-made-logo" aria-hidden="true" />
-              <span className="footer-made-wordmark">nest</span>
-            </span>
+            <span className="footer-made-wordmark">nest</span>
           </a>
         </div>
       </div>
