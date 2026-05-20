@@ -198,8 +198,34 @@ html[dir="ltr"] .hero-photo::after {
 }
 .hero .container { position: relative; z-index: 2; width: 100%; }
 .hero-content {
-  max-width: 880px;
+  max-width: 50%;
   padding-block: clamp(60px, 12vw, 120px);
+}
+
+/* RTL (Arabic): text right, subject left */
+[dir="rtl"] .hero-content {
+  margin-inline-start: auto;
+  text-align: right;
+}
+
+/* LTR (English): text left, subject right */
+[dir="ltr"] .hero-content {
+  margin-inline-end: auto;
+  text-align: left;
+}
+
+/* Mobile: centered over image */
+@media (max-width: 767px) {
+  .hero-content {
+    max-width: 90%;
+    text-align: center;
+    margin-inline: auto;
+  }
+  [dir="rtl"] .hero-content,
+  [dir="ltr"] .hero-content {
+    margin-inline: auto;
+    text-align: center;
+  }
 }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 12px;
