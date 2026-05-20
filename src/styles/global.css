@@ -120,6 +120,90 @@ section { position: relative; }
   .nav .nav-link { display: none; }
 }
 
+/* ---------- Burger button ---------- */
+.burger-btn {
+  display: none;
+  background: none; border: none; cursor: pointer;
+  color: inherit;
+  padding: 6px;
+  margin-inline-start: auto;
+  line-height: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (max-width: 860px) {
+  .burger-btn { display: flex; align-items: center; justify-content: center; }
+  /* Hide lang + header-cta in top nav on mobile — they live in the drawer */
+  .nav .lang { display: none; }
+  .header-cta { display: none !important; }
+}
+
+/* ---------- Mobile drawer ---------- */
+.mobile-drawer {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;
+  width: min(320px, 85vw);
+  background: var(--navy-3);
+  color: var(--text-on-dark);
+  z-index: 49;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--header-h) + 24px) 32px 40px;
+  transform: translateX(105%);
+  transition: transform .38s var(--ease);
+  overflow-y: auto;
+}
+html[dir="rtl"] .mobile-drawer {
+  transform: translateX(-105%);
+}
+.mobile-drawer.is-open {
+  transform: translateX(0);
+}
+.mobile-drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+.mobile-nav-link {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-on-dark-2);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-on-dark);
+  transition: color .2s var(--ease);
+}
+.mobile-nav-link:hover { color: #fff; }
+.mobile-drawer-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 32px;
+}
+.mobile-lang {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px; letter-spacing: .18em;
+  border: 1px solid var(--line-on-dark);
+  padding: 10px 16px; border-radius: 2px;
+  opacity: .7; cursor: pointer; background: none;
+  color: var(--text-on-dark);
+  align-self: flex-start;
+}
+.mobile-lang:hover { opacity: 1; }
+.mobile-drawer-cta { width: 100%; justify-content: center; }
+
+.mobile-drawer-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(5,15,42,.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 48;
+}
+@media (min-width: 861px) {
+  .mobile-drawer,
+  .mobile-drawer-backdrop { display: none !important; }
+}
+
 /* ---------- Logo ---------- */
 .logo {
   display: inline-flex; align-items: center;
