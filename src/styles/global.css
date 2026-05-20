@@ -689,16 +689,12 @@ html[dir="ltr"] .steps-line::after {
   56%       { transform: scale(1); }
 }
 .footer-made-logo {
-  height: 16px; width: auto;
-  opacity: .7;
-  transition: opacity .3s var(--ease);
-  filter: brightness(0) invert(1);
+  height: 20px; width: auto;
+  border-radius: 5px;
+  opacity: .6;
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
 }
-.footer-made-link:hover .footer-made-logo { opacity: 1; }
-.footer-made-fallback {
-  font-family: "IBM Plex Sans", sans-serif;
-  letter-spacing: .04em;
-}
+.footer-made-link:hover .footer-made-logo { opacity: 1; transform: scale(1.08); }
 .socials { display: flex; gap: 8px; }
 .social-btn {
   width: 36px; height: 36px; display: grid; place-items: center;

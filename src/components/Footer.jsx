@@ -81,13 +81,7 @@ export default function Footer() {
             <svg className="footer-made-heart" viewBox="0 0 16 16" fill="currentColor" width="13" height="13" aria-hidden="true">
               <path d="M8 13.7C7.6 13.4 1 9.1 1 5a3.9 3.9 0 0 1 7-2.4A3.9 3.9 0 0 1 15 5c0 4.1-6.6 8.4-7 8.7Z"/>
             </svg>
-            <img
-              src="/images/nest-icon.png"
-              alt="nest"
-              className="footer-made-logo"
-              onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline'; }}
-            />
-            <span className="footer-made-fallback" style={{ display: 'none' }}>nest</span>
+            <img src="/nest.svg" alt="nest" className="footer-made-logo" />
           </a>
         </div>
       </div>
