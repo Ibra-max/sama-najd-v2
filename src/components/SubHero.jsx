@@ -30,9 +30,10 @@ export default function SubHero({ pageId, heroKey, serviceData }) {
   return (
     <section className="sub-hero">
       <div className="hero-photo">
-        <picture>
+        <picture key={getDesktopImage()}>
           <source media="(max-width: 767px)" srcSet={getMobileImage()} />
           <img
+            key={getDesktopImage()}
             src={getDesktopImage()}
             alt={heroT.imageAlt}
             loading="eager"

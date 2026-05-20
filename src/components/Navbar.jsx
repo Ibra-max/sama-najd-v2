@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const ArrowSvg = () => (
@@ -10,7 +10,6 @@ const ArrowSvg = () => (
 
 export default function Navbar() {
   const { t, toggleLang } = useLanguage();
-  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -20,10 +19,9 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const isHome = location.pathname === '/';
   const headerClass = [
     'site-header',
-    scrolled ? 'is-scrolled' : isHome ? 'is-dark' : 'is-light',
+    scrolled ? 'is-scrolled' : 'is-dark',
   ].join(' ');
 
   const navLinks = [

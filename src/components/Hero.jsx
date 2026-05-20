@@ -32,9 +32,10 @@ export default function Hero({ page = 'home' }) {
   return (
     <section className="hero" id="hero">
       <div className="hero-photo">
-        <picture>
+        <picture key={getDesktopImage()}>
           <source media="(max-width: 767px)" srcSet={getMobileImage()} />
           <img
+            key={getDesktopImage()}
             src={getDesktopImage()}
             alt={heroT.imageAlt}
             loading="eager"
