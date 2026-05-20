@@ -681,7 +681,13 @@ html[dir="ltr"] .steps-line::after {
 }
 .scroll-top-btn.is-visible { opacity: 1; transform: none; pointer-events: auto; }
 .scroll-top-btn:hover { background: var(--brand); }
-@media (max-width: 720px) { .scroll-top-btn { display: none; } }
+@media (max-width: 720px) {
+  .scroll-top-btn {
+    bottom: 88px; /* sit above the sticky CTA bar (76px) */
+    inset-inline-end: 16px;
+    width: 40px; height: 40px;
+  }
+}
 
 /* ---------- Mobile sticky bar ---------- */
 .mobile-cta-bar {
