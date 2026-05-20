@@ -17,10 +17,7 @@ export default function Footer() {
             </Link>
             <p className="blurb">{t.footer.blurb}</p>
             <div className="socials" style={{ marginTop: 28 }}>
-              <a className="social-btn" href={WA_URL} target="_blank" rel="noopener" aria-label="WhatsApp">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 0 0-5.6 9.8L1.5 14.5l3.3-.9A6.5 6.5 0 1 0 8 1.5Zm3.6 9.3c-.2.4-.9.8-1.2.8-.3 0-.7.1-2.3-.5-1.9-.8-3.2-2.8-3.3-2.9-.1-.1-.8-1.1-.8-2.1s.5-1.4.7-1.6c.2-.2.4-.3.6-.3h.4c.1 0 .3 0 .5.4l.7 1.6c.1.1 0 .3 0 .4l-.3.4c-.1.1-.2.2-.1.4.1.1.5.8 1 1.3.7.6 1.3.8 1.4.9.1.1.3.1.4 0l.6-.7c.1-.1.3-.1.4 0l1.4.7c.2.1.3.2.4.3 0 .1 0 .5-.2.9Z" /></svg>
-              </a>
-              <a className="social-btn" href="#" aria-label="Instagram">
+<a className="social-btn" href="#" aria-label="Instagram">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2"><rect x="2" y="2" width="12" height="12" rx="3" /><circle cx="8" cy="8" r="2.6" /><circle cx="11.5" cy="4.5" r=".6" fill="currentColor" /></svg>
               </a>
               <a className="social-btn" href="#" aria-label="Twitter X">
