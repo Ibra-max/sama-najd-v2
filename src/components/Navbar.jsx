@@ -75,6 +75,7 @@ export default function Navbar() {
                 to={href}
                 end={href === '/'}
                 className={({ isActive }) => `nav-link${isActive ? ' is-active' : ''}`}
+                onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
               >
                 {label}
               </NavLink>

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import StickyCtaMobile from './components/StickyCtaMobile';
+import ScrollToTopBtn from './components/ScrollToTopBtn';
 import Home from './pages/Home';
 import Cash from './pages/Cash';
 import GovernmentEmployee from './pages/GovernmentEmployee';
@@ -38,6 +39,7 @@ function AppContent() {
       </Routes>
       <Footer />
       <StickyCtaMobile />
+      <ScrollToTopBtn />
     </>
   );
 }

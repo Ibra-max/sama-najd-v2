@@ -662,6 +662,27 @@ html[dir="ltr"] .steps-line::after {
   .footer .grid { grid-template-columns: 1fr; }
 }
 
+/* ---------- Scroll-to-top button ---------- */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 32px;
+  inset-inline-end: 32px;
+  z-index: 55;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(10,31,68,.25);
+  opacity: 0; transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity .3s var(--ease), transform .3s var(--ease), background .2s var(--ease);
+}
+.scroll-top-btn.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+.scroll-top-btn:hover { background: var(--brand); }
+@media (max-width: 720px) { .scroll-top-btn { display: none; } }
+
 /* ---------- Mobile sticky bar ---------- */
 .mobile-cta-bar {
   position: fixed; bottom: 0; inset-inline: 0; z-index: 60;
