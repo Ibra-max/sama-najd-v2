@@ -68,7 +68,7 @@ export default function Footer() {
 
         <div className="footer-made">
           <a
-            href="https://nest.aschuweiter.de"
+            href="https://nest.aschuweiter.de/ar"
             target="_blank"
             rel="noopener noreferrer"
             className="footer-made-link"
