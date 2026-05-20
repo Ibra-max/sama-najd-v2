@@ -61,9 +61,12 @@ export default function Hero({ page = 'home' }) {
               {heroT.ctaPrimary || t.hero.ctaPrimary}
               <ArrowSvg />
             </Link>
-            <Link to="/#services" className="btn btn-ghost">
+            <button
+              className="btn btn-ghost"
+              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               {heroT.ctaSecondary || t.hero.scrollHint}
-            </Link>
+            </button>
           </div>
         </div>
       </div>
