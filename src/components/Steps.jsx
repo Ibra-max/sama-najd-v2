@@ -4,6 +4,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 export default function Steps() {
   const { t } = useLanguage();
   const gridRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const grid = gridRef.current;
@@ -11,6 +12,13 @@ export default function Steps() {
 
     const steps = grid.querySelectorAll('.step');
     function update() {
+      // Parallax glow on the section ::before
+      if (sectionRef.current) {
+        const sr = sectionRef.current.getBoundingClientRect();
+        const entry = 1 - Math.max(0, Math.min(1, sr.top / window.innerHeight));
+        sectionRef.current.style.setProperty('--parallax', `${entry * -28}px`);
+      }
+
       const r = grid.getBoundingClientRect();
       const vh = window.innerHeight;
       const total = r.height + vh * 0.5;
@@ -34,7 +42,7 @@ export default function Steps() {
   }, []);
 
   return (
-    <section className="steps section-pad" id="how" style={{ paddingTop: 40 }}>
+    <section ref={sectionRef} className="steps section-pad" id="how">
       <div className="container">
         <div className="section-head">
           <div data-reveal>

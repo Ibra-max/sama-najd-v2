@@ -458,7 +458,29 @@ html[dir="ltr"] .hero-photo::after {
 }
 
 /* ---------- Steps ---------- */
-.steps { background: var(--navy-3); color: var(--text-on-dark); }
+.steps {
+  --parallax: 0px;
+  background: var(--navy-3);
+  color: var(--text-on-dark);
+  /* diagonal cut that overlaps the Services section */
+  clip-path: polygon(0 clamp(48px,5vw,80px), 100% 0, 100% 100%, 0 100%);
+  margin-top: calc(-1 * clamp(48px,5vw,80px));
+  padding-top: clamp(96px,12vw,160px);
+}
+/* Scroll-parallax glow at the diagonal edge */
+.steps::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 280px;
+  background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(0,153,204,.13) 0%, transparent 70%);
+  transform: translateY(var(--parallax));
+  will-change: transform;
+  pointer-events: none;
+  z-index: 0;
+  transition: transform .05s linear;
+}
+.steps .container { position: relative; z-index: 1; }
 .steps .eyebrow { color: var(--text-on-dark-2); }
 .steps-grid {
   display: grid;
@@ -512,13 +534,6 @@ html[dir="ltr"] .hero-photo::after {
   .step .step-dot { position: absolute; inset-inline-start: -7px; top: 0; margin-bottom: 0; }
   .step .step-num { margin-top: -4px; }
 }
-
-/* ---------- Diagonal divider ---------- */
-.divider-diagonal {
-  position: relative; height: 80px; margin-bottom: -1px;
-  background: var(--bg-2);
-}
-.divider-diagonal svg { width: 100%; height: 100%; display: block; }
 
 /* ---------- CTA block ---------- */
 .cta-block { background: var(--bg); text-align: start; }
