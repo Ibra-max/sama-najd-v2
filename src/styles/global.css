@@ -156,7 +156,8 @@ section { position: relative; }
 html[dir="rtl"] .mobile-drawer {
   transform: translateX(-105%);
 }
-.mobile-drawer.is-open {
+.mobile-drawer.is-open,
+html[dir="rtl"] .mobile-drawer.is-open {
   transform: translateX(0);
 }
 .mobile-drawer-nav {
