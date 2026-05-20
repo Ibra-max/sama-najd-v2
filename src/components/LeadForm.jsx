@@ -1,5 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { trackFormSubmit } from '../utils/tracking';
 
 const PHONE_INTL = '+966550650034';
 
@@ -47,9 +48,7 @@ export default function LeadForm({ service = 'home', badgeLabel = 'FORM · 05' }
       setErrors(newErrors);
       return;
     }
-    try {
-      window.dataLayer?.push({ event: 'lead_submit', service });
-    } catch (_) {}
+    trackFormSubmit(service);
     setSent(true);
   };
 

@@ -4,6 +4,42 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>سما نجد للمقاولات العامة</title>
+
+  <!-- ========== TRACKING PIXELS — REPLACE IDs BEFORE LAUNCH ========== -->
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'META_PIXEL_ID_HERE');
+    fbq('track', 'PageView');
+  </script>
+
+  <!-- Snapchat Pixel -->
+  <script>
+    (function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function(){a.handleRequest?
+    a.handleRequest.apply(a,arguments):a.queue.push(arguments)};a.queue=[];
+    var s='script';r=t.createElement(s);r.async=!0;r.src=n;
+    var u=t.getElementsByTagName(s)[0];u.parentNode.insertBefore(r,u);})
+    (window,document,'https://sc-static.net/scevent.min.js');
+    snaptr('init', 'SNAP_PIXEL_ID_HERE');
+    snaptr('track', 'PAGE_VIEW');
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_ID_HERE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_ID_HERE');
+  </script>
+
+  <!-- ========== END TRACKING PIXELS ========== -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />

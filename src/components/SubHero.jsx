@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../i18n/LanguageContext';
+import { trackWhatsAppClick } from '../utils/tracking';
 
 const WA_URL = 'https://wa.me/966550650034';
 
@@ -64,7 +65,7 @@ export default function SubHero({ pageId, heroKey, serviceData }) {
               {t.hero.ctaPrimary}
               <ArrowSvg />
             </a>
-            <a href={WA_URL} className="btn btn-ghost" target="_blank" rel="noopener">
+            <a href={WA_URL} className="btn btn-ghost" target="_blank" rel="noopener" onClick={trackWhatsAppClick}>
               {t.subPage.ctaWhatsapp}
             </a>
           </div>
