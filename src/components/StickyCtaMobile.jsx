@@ -1,36 +1,31 @@
 import { useState, useEffect } from 'react';
-import { useLanguage } from '../i18n/LanguageContext';
 import { trackWhatsAppClick } from '../utils/tracking';
 
-const PHONE_INTL = '+966550650034';
-
-const ArrowSvg = () => (
-  <svg className="arrow" viewBox="0 0 16 10" fill="none">
-    <path d="M15 5H1M1 5l4-4M1 5l4 4" stroke="currentColor" strokeWidth="1.4" />
-  </svg>
-);
+const WA_URL = 'https://wa.me/966550650034';
 
 export default function StickyCtaMobile() {
-  const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 80);
+    const onScroll = () => setVisible(window.scrollY > 200);
     window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <div className={`mobile-cta-bar${visible ? ' is-visible' : ''}`}>
-      <a href={`tel:${PHONE_INTL}`} className="btn btn-ghost" aria-label={t.footer.contact} onClick={trackWhatsAppClick}>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4">
-          <path d="M3 3.5a1.5 1.5 0 0 1 1.5-1.5h1.7c.6 0 1.1.4 1.3 1l.6 2c.2.6-.1 1.3-.6 1.6L6.4 7.4a8 8 0 0 0 2.2 2.2l.8-1.1c.3-.5 1-.8 1.6-.6l2 .6c.6.2 1 .7 1 1.3v1.7a1.5 1.5 0 0 1-1.5 1.5C7.6 13 3 8.4 3 3.5Z" />
-        </svg>
-      </a>
-      <a href="#lead" className="btn btn-primary">
-        {t.nav.apply}
-        <ArrowSvg />
-      </a>
-    </div>
+    <a
+      href={WA_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`wa-fab${visible ? ' is-visible' : ''}`}
+      aria-label="WhatsApp"
+      onClick={trackWhatsAppClick}
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.553 4.103 1.522 5.827L.057 23.571a.75.75 0 0 0 .921.921l5.744-1.465A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.707 9.707 0 0 1-4.953-1.355l-.355-.211-3.41.871.887-3.41-.23-.371A9.722 9.722 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+      </svg>
+    </a>
   );
 }
