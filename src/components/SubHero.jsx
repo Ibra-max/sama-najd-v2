@@ -22,7 +22,15 @@ export default function SubHero({ pageId, heroKey, serviceData }) {
   const heroT = t.hero[heroKey];
   const base = IMAGE_MAP[pageId];
 
-  const getDesktopImage = () => `/images/${base}_desc${lang === 'en' && pageId !== 'real-estate-liquidity' ? '_mirrored' : ''}.png`;
+  const getDesktopImage = () => {
+    // waqf-services: mirror in AR (not EN) — image composition requires opposite orientation
+    // real-estate-liquidity: never mirror
+    // all others: mirror in EN
+    let mirrored = false;
+    if (pageId === 'waqf-services') mirrored = lang === 'ar';
+    else if (pageId !== 'real-estate-liquidity') mirrored = lang === 'en';
+    return `/images/${base}_desc${mirrored ? '_mirrored' : ''}.png`;
+  };
   const getMobileImage = () => `/images/${base}_mobil.png`;
 
   const meta = serviceData.meta[lang];
@@ -46,7 +54,7 @@ export default function SubHero({ pageId, heroKey, serviceData }) {
           <div className="crumbs">
             <Link to="/">{t.subPage.breadcrumb}</Link>
             <span aria-hidden="true">/</span>
-            <span>{heroT.eyebrow}</span>
+            <span>{heroT.eyebrow.replace(/^\d+\s*[—–-]+\s*/, '')}</span>
           </div>
 
           <div className="hero-eyebrow eyebrow on-dark" data-reveal>

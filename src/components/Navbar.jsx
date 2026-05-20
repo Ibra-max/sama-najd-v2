@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const ArrowSvg = () => (
@@ -70,9 +70,14 @@ export default function Navbar() {
           </Link>
           <nav className="nav" aria-label={t.nav.home}>
             {navLinks.map(({ href, label }) => (
-              <Link key={href} to={href} className="nav-link">
+              <NavLink
+                key={href}
+                to={href}
+                end={href === '/'}
+                className={({ isActive }) => `nav-link${isActive ? ' is-active' : ''}`}
+              >
                 {label}
-              </Link>
+              </NavLink>
             ))}
             <button className="lang" onClick={toggleLang} aria-label="Switch language">
               {t.nav.langSwitch}
@@ -97,9 +102,15 @@ export default function Navbar() {
       <div className={`mobile-drawer${menuOpen ? ' is-open' : ''}`} aria-hidden={!menuOpen}>
         <nav className="mobile-drawer-nav">
           {navLinks.map(({ href, label }) => (
-            <Link key={href} to={href} className="mobile-nav-link" onClick={() => setMenuOpen(false)}>
+            <NavLink
+              key={href}
+              to={href}
+              end={href === '/'}
+              className={({ isActive }) => `mobile-nav-link${isActive ? ' is-active' : ''}`}
+              onClick={() => setMenuOpen(false)}
+            >
               {label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
         <div className="mobile-drawer-footer">
