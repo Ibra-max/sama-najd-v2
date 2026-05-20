@@ -105,6 +105,13 @@ section { position: relative; }
   opacity: .7; cursor: pointer; background: none;
 }
 .nav .lang:hover { opacity: 1; }
+/* In EN/LTR mode the button shows Arabic script — switch to Arabic font, drop monospace letter-spacing */
+html[dir="ltr"] .nav .lang,
+html[dir="ltr"] .mobile-lang {
+  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans", sans-serif;
+  letter-spacing: 0;
+  font-size: 13px;
+}
 .header-cta {
   display: inline-flex; align-items: center; gap: 10px;
   background: var(--accent); color: #fff;
@@ -509,6 +516,7 @@ html[dir="ltr"] .hero-photo::after {
 /* ---------- Diagonal divider ---------- */
 .divider-diagonal {
   position: relative; height: 80px; margin-bottom: -1px;
+  background: var(--bg-2);
 }
 .divider-diagonal svg { width: 100%; height: 100%; display: block; }
 
