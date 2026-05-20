@@ -202,15 +202,17 @@ html[dir="ltr"] .hero-photo::after {
   padding-block: clamp(60px, 12vw, 120px);
 }
 
-/* RTL (Arabic): text right, subject left */
+/* RTL (Arabic): text right → margin-left: auto pushes block to the right */
 [dir="rtl"] .hero-content {
-  margin-inline-start: auto;
+  margin-left: auto;
+  margin-right: 0;
   text-align: right;
 }
 
-/* LTR (English): text left, subject right */
+/* LTR (English): text left → margin-right: auto keeps block on the left */
 [dir="ltr"] .hero-content {
-  margin-inline-end: auto;
+  margin-right: auto;
+  margin-left: 0;
   text-align: left;
 }
 

@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -11,9 +11,10 @@ import RealEstateLiquidity from './pages/RealEstateLiquidity';
 import { useLanguage } from './i18n/LanguageContext';
 
 function ScrollToTop() {
+  const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, []);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
   return null;
 }
 
@@ -26,13 +27,14 @@ function AppContent() {
 
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Routes>
-        <Route path="/" element={<><ScrollToTop /><Home /></>} />
-        <Route path="/cash" element={<><ScrollToTop /><Cash /></>} />
-        <Route path="/government-employee" element={<><ScrollToTop /><GovernmentEmployee /></>} />
-        <Route path="/waqf-services" element={<><ScrollToTop /><WaqfServices /></>} />
-        <Route path="/real-estate-liquidity" element={<><ScrollToTop /><RealEstateLiquidity /></>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/cash" element={<Cash />} />
+        <Route path="/government-employee" element={<GovernmentEmployee />} />
+        <Route path="/waqf-services" element={<WaqfServices />} />
+        <Route path="/real-estate-liquidity" element={<RealEstateLiquidity />} />
       </Routes>
       <Footer />
       <StickyCtaMobile />
